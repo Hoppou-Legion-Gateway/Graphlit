@@ -132,7 +132,11 @@ namespace Graphlit
       FICD_COLOR_MASK
     }
 
+#if UNITY_EDITOR_WIN
     const string FreeImageDLL = "FreeImage";
+#else
+    const string FreeImageDLL = "__Internal";
+#endif
 
     [DllImport(FreeImageDLL, EntryPoint = "FreeImage_GetFIFFromFormat")]
     private static extern ImageFormat GetFIFFromFormat(string format);
