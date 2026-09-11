@@ -270,7 +270,7 @@ namespace Graphlit
             var directory = Path.GetDirectoryName(referencePath);
             var fileName = Path.GetFileNameWithoutExtension(referencePath);
 
-            var newPath = directory + @"\" + fileName + 
+            var newPath = Path.Combine(directory, fileName) + 
                 (string.IsNullOrEmpty(packingSuffix) ? "_packed" : packingSuffix);
             var extension = PackingFormat.GetExtension();
 
