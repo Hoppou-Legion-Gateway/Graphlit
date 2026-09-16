@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 # Graphlit Project Config
 
 Project config is applied to all Graphlit shaders in the project.

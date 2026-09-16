@@ -1,5 +1,3 @@
-import { Callout } from "nextra/components"
-
 # Master Node
 
 This is the main node where all settings, properties and target features can be adjusted.

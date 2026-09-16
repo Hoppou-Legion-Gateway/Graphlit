@@ -4,14 +4,14 @@ Enable inverse square attenuation by adding `#define SQUARE_FALLOFF_ATTENUATION`
 
 To match point lights with bakery point lights enable physically based light falloff. For spot lights use the cone projection mask with 80% inner angle.
 
-![Image](/Unity_D4AZb4jaCL.png)
+![Image](images/Unity_D4AZb4jaCL.png)
 
-![Image](/Unity_9PE7H8txbM.png)
+![Image](images/Unity_9PE7H8txbM.png)
 
-![Image](/Unity_fC9R3xovBO.png)
+![Image](images/Unity_fC9R3xovBO.png)
 
 Spot lights use angle attenuation, instead of the default unity cookie texture.
 
-![Image](/spot-default-cookie.png)
+![Image](images/spot-default-cookie.png)
 
-![Image](/spot-cone.png)
+![Image](images/spot-cone.png)

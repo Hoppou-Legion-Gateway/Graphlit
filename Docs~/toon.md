@@ -1,13 +1,11 @@
-import Image from "next/image"
-
 # Toon
 
-Toon shaders are implmented using [Custom Lighting](./custom-lighting.mdx) instead having predetermined outputs like the PBR Lit graph.
+Toon shaders are implmented using [Custom Lighting](./custom-lighting.md) instead having predetermined outputs like the PBR Lit graph.
 This allows for much more control which is generally needed with toon.
 
-This also works well with [Live Previews](./live-preview.mdx).
+This also works well with [Live Previews](/live-preview.md).
 Options like outlines can't be controlled on the material so this way you can also enable them at the shader generation level.
-![Image](/generated-material.png)
+![Image](images/generated-material.png)
 
 ## Sample Shader
 
@@ -19,19 +17,19 @@ Use the Color output of the `Toon Light` node.
 This node is based on Open Lit and returns averaged color of light probes and lights, which can be used as a base for toon shading.
 This is already a fully functioning shader.
 Enable Apply Shadows to receive realtime shadows.
-![Image](/flat-lit.png)
+![Image](images/flat-lit.png)
 
 ## Shadow Layers
 
 Add the `Toon Shadow Layers` node.
-![Image](/toon-shadow.png)
+![Image](images/toon-shadow.png)
 
 ## Outlines
 
 Enable outlines on the master node and use the `Outline Scale` node to scale them based on vertex normals.
 Use the `Outline Pass Branch` to customize the outputs of the outline pass.
 This can be used for example to set a different color for outlines from the base pass.
-![Image](/outlines.png)
+![Image](images/outlines.png)
 
 
 ### Outline Mask Texture
@@ -48,7 +46,7 @@ This allows you to have fine-grained control over which parts of the model displ
 ## Stylized Specular
 
 Connect the Stylized Specular node to the Toon Light and output to Specular
-![Image](/stylized-specular.png)
+![Image](images/stylized-specular.png)
 
 ## Transclipping
 

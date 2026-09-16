@@ -1,9 +1,7 @@
-import Image from "next/image"
-
 # Graphlit UdonRP
 
 - Add the UdonRP Manager prefab to the scene `Packages/com.z3y.graphlit/Runtime/UdonRP Manager.prefab`
-- Create a config file ([Config](./config.mdx)) and define UdonRP features
+- Create a config file ([Config](./config.md)) and define UdonRP features
 - Enable features on the UdonRP Manager script
 
 ## Environment Probe
@@ -12,7 +10,7 @@ This mode enables better reflection probe box projection, which are not bound to
 Because of certain unity limitation it requires box projection to be toggled OFF on the reflection probe( the toggle is flipped)
 This enables sampling of the environment skybox probe, which is blended with remaning weight after samling the 2 most important reflection probes.
 
-![Image](/probes.png)
+![Image](images/probes.png)
 
 ## Directional Cookie
 

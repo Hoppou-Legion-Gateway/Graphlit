@@ -1,6 +1,6 @@
 <div align="center">
-  <a href="https://z3y.github.io/Graphlit/">
-    <img alt="" height="138" src="./Docs~/public/graphlit-attribution.png">
+  <a href="https://github.com/z3y/Graphlit/tree/master/Docs~">
+    <img alt="" height="138" src="./Docs~/images/graphlit-attribution.png">
   </a>
   <p>A node shader editor for Toon and PBR shaders<br>
   Supports the Built-In and Universal Render Pipeline</p>
@@ -11,9 +11,9 @@
 ## Setup
 
 - Install with the [VRChat Creator Companion](https://z3y.github.io/vpm-package-listing/) or add the git url
-- To get started read the [Documentation](https://z3y.github.io/Graphlit)
+- To get started read the [Documentation](Docs~/)
 - You can try out the shader in the [VRChat World](https://vrchat.com/home/world/wrld_6fd2e6c4-d4f2-49ea-8cf6-ce7ccb0e7111)
-- Setup the project [config file](https://z3y.github.io/Graphlit/config)
+- Setup the project [config file](Docs~/config.md)
 - Use one of the included shaders, or create your own `Assets/Create/Graphlit/Lit Graph` (double click to open in the node editor)
 
 ## Support
@@ -48,7 +48,7 @@
 - F82 metallic edge tint
 - Coat
 - Thin Film iridescence
-- Improved [Box Projection](https://z3y.github.io/Graphlit/udonrp)
+- Improved [Box Projection](Docs~/udonrp.md)
 - [Ray Tracing](https://github.com/z3y/VRCTrace)
 
 
@@ -63,7 +63,7 @@
 - Varyings Packing
 - Keyword properties pass flags option
   - Reduces shader variants, code, varings and attributes for the true branch
-- [Hotkeys](https://z3y.github.io/Graphlit/hotkeys)
+- [Hotkeys](Docs~/hotkeys.md)
 
 ### Universal Render Pipeline
 
@@ -78,19 +78,19 @@ Currently not implemented:
 
 ### Example Materials
 
-![Image](/Docs~/public/shader-ball.jpg)
+![Image](/Docs~/images/shader-ball.jpg)
 
 ### Graph
 
-![Image](/Docs~/public/Unity_iGcR8rpLM9.png)
+![Image](/Docs~/images/Unity_iGcR8rpLM9.png)
 
 ### Main Shader
 
-![Image](/Docs~/public/Unity_qOcvTvZ5FS.png)
+![Image](/Docs~/images/Unity_qOcvTvZ5FS.png)
 
 ### Softer light shadows
 
-![Image](/Docs~/public/Unity_rQ4Jf1GE8o.png)
+![Image](/Docs~/images/Unity_rQ4Jf1GE8o.png)
 
 ### Live Preview
 

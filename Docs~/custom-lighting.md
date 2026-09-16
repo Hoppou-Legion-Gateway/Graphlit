@@ -7,7 +7,7 @@ To implement custom lighting Right Click `Create -> Graphlit -> Custom Graph`.
 - This creates a new Unlit graph with `Custom Lighting` option enabled which allows you to access light data using the `Main Light` Node, Lightmap UVs, and generates all the requred passes
 - The created `Blend Final Color` node is used to correctly handle transparency, output required data to the meta pass and provide an easy way to blend everything
 
-![Image](/custom-lighting.png)
+![Image](images/custom-lighting.png)
 
 ## Implementation
 
@@ -30,6 +30,6 @@ The diffuse or specular outputs can be simply added together with an Add node an
 Many nodes have the `Normal WS` Input (World Space Normal).
 To apply a normal map you simply need to transform it from tangent space to world space and override those inputs.
 
-![Image](/tangenttoworld.png)
+![Image](images/tangenttoworld.png)
 
-![Image](/world-normal.png)
+![Image](images/world-normal.png)

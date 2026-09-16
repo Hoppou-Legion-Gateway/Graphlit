@@ -1,5 +1,3 @@
-import { Callout } from "nextra/components"
-
 # Custom Function Nodes
 
 Custom function nodes are entirely defined with code. They can either be inlined directly in the node, or imported from a file.
