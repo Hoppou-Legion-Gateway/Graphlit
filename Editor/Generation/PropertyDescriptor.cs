@@ -579,7 +579,14 @@ namespace Graphlit
         void OnGUIColor(Rect rect)
         {
             EditorGUI.BeginChangeCheck();
-            Color newValue = EditorGUI.ColorField(rect, ShouldDisplayName(rect) ? "Color" : "", VectorValue);
+            bool hdr = defaultAttributes.HasFlag(MaterialPropertyAttribute.HDR);
+            Color newValue = EditorGUI.ColorField(
+                rect,
+                new GUIContent(ShouldDisplayName(rect) ? "Color" : ""),
+                VectorValue,
+                true,
+                true,
+                hdr);
 
             if (EditorGUI.EndChangeCheck())
             {
