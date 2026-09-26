@@ -4,7 +4,9 @@
 #include "GlobalIllumination/LTCGI.hlsl"
 #include "GlobalIllumination/AreaLit.hlsl"
 
-#ifdef _ACES
+#include "AgX.hlsl"
+
+#if defined(_ACES) && !defined(GRAPHLIT_AGX)
     #include "ACES.hlsl"
 #endif
 
@@ -372,7 +374,9 @@ float4 frag(Varyings input) : SV_Target
     
     color.a = OutputAlpha(color.a, isTransparent);
 
-    #ifdef _ACES
+    #if defined(GRAPHLIT_AGX)
+        color.rgb = AgXTonemap(color.rgb);
+    #elif defined(_ACES)
         color.rgb = ACESFitted(color.rgb);
     #endif
 

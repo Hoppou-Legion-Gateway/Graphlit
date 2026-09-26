@@ -349,6 +349,7 @@ namespace Graphlit
             builder.properties.Add(_decalery);
 
             builder._defaultTextures["_DFG"] = _dfg;
+            AddAgXLutProperties(builder);
 
             builder.subshaderTags["RenderType"] = "Opaque";
             builder.subshaderTags["Queue"] = "Geometry";

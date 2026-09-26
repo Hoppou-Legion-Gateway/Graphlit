@@ -9,6 +9,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.Rendering;
 using System.IO;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Graphlit
 {
@@ -174,6 +175,10 @@ namespace Graphlit
         {
             if (_graphlitConfigExists)
             {
+                if (AgXPackageInstalled)
+                {
+                    pass.pragmas.Add("#define GRAPHLIT_AGX_PACKAGE");
+                }
                 pass.pragmas.Add($"#include_with_pragmas \"{_graphlitConfigPath}\"");
             }
         }
@@ -192,6 +197,64 @@ namespace Graphlit
             Additive = 4,
             Multiply = 5,
             TransClipping = 6,
+        }
+
+        internal const string AgXPackagePath = "Packages/com.meenphie.commons.profiles";
+        internal static bool AgXPackageInstalled => AssetDatabase.IsValidFolder(AgXPackagePath);
+
+        // Config define, shader property, LUT path relative to the AgX package
+        internal static readonly (string define, string property, string lut)[] AgXProfiles =
+        {
+            ("_AGX_BASE_CONTRAST", "_AgXLutBaseContrast", "AgX Luts/AgX - Base Contrast.exr"),
+            ("_AGX_MEDIUM_HIGH_CONTRAST", "_AgXLutMediumHighContrast", "AgX Luts/AgX - Medium High Contrast.exr"),
+            ("_AGX_HIGH_CONTRAST", "_AgXLutHighContrast", "AgX Luts/AgX - High Contrast.exr"),
+            ("_AGX_VERY_HIGH_CONTRAST", "_AgXLutVeryHighContrast", "AgX Luts/AgX - Very High Contrast.exr"),
+            ("_AGX_MEDIUM_LOW_CONTRAST", "_AgXLutMediumLowContrast", "AgX Luts/AgX - Medium Low Contrast.exr"),
+            ("_AGX_LOW_CONTRAST", "_AgXLutLowContrast", "AgX Luts/AgX - Low Contrast.exr"),
+            ("_AGX_VERY_LOW_CONTRAST", "_AgXLutVeryLowContrast", "AgX Luts/AgX - Very Low Contrast.exr"),
+            ("_AGX_PUNCHY", "_AgXLutPunchy", "AgX Luts/AgX - Punchy.exr"),
+            ("_AGX_GREYSCALE", "_AgXLutGreyscale", "AgX Luts/AgX - Greyscale.exr"),
+            ("_AGX_POWERFUL", "_AgXLutPowerful", "AgX Luts/Look/AgX - Powerful.exr"),
+            ("_AGX_HUE", "_AgXLutHue", "AgX Luts/Look/AgX - Hue.exr"),
+        };
+
+        static readonly Regex _hlslComments = new(@"/\*.*?\*/|//[^\n]*", RegexOptions.Singleline | RegexOptions.Compiled);
+
+        // Binds the LUT of every AgX profile defined in the project config
+        // Each profile has its own property so configs with platform conditionals (#ifdef TARGET_ANDROID) still work
+        protected void AddAgXLutProperties(ShaderBuilder builder)
+        {
+            if (!_graphlitConfigExists)
+            {
+                return;
+            }
+
+            string config = _hlslComments.Replace(File.ReadAllText(_graphlitConfigPath), string.Empty);
+
+            foreach (var (define, property, lut) in AgXProfiles)
+            {
+                if (!Regex.IsMatch(config, $@"#\s*define\s+{define}\b"))
+                {
+                    continue;
+                }
+
+                string lutPath = $"{AgXPackagePath}/{lut}";
+                builder.dependencies.Add(lutPath);
+
+                var texture = AssetDatabase.LoadAssetAtPath<Texture3D>(lutPath);
+                if (texture == null)
+                {
+                    Debug.LogWarning($"Graphlit: {define} is enabled but the AgX LUT was not found at \"{lutPath}\". Install https://github.com/meenphie/AgX-Tonemapping-Unity.git, AgX tonemapping is skipped.");
+                    continue;
+                }
+
+                builder.properties.Add(new PropertyDescriptor(PropertyType.Texture3D, "", property)
+                {
+                    defaultAttributes = MaterialPropertyAttribute.HideInInspector | MaterialPropertyAttribute.NonModifiableTextureData,
+                    DefaultTextureValue = texture
+                });
+                builder._defaultTextures[property] = texture;
+            }
         }
 
         protected Texture2D _dfg = AssetDatabase.LoadAssetAtPath<Texture2D>("Packages/com.z3y.graphlit/Editor/Targets/Lit/dfg-multiscatter.exr");

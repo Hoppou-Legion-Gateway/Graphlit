@@ -11,6 +11,20 @@
 // Enable ACES Tonemapping (usually useful for android only)
 // #define _ACES
 
+// Enable AgX Tonemapping, requires https://github.com/meenphie/AgX-Tonemapping-Unity (com.meenphie.commons.profiles)
+// Takes priority over ACES. Pick one profile/look:
+// #define _AGX_BASE_CONTRAST
+// #define _AGX_MEDIUM_HIGH_CONTRAST
+// #define _AGX_HIGH_CONTRAST
+// #define _AGX_VERY_HIGH_CONTRAST
+// #define _AGX_MEDIUM_LOW_CONTRAST
+// #define _AGX_LOW_CONTRAST
+// #define _AGX_VERY_LOW_CONTRAST
+// #define _AGX_PUNCHY
+// #define _AGX_GREYSCALE
+// #define _AGX_POWERFUL
+// #define _AGX_HUE
+
 // Enable Bakery MonoSH
 // #define _BAKERY_MONOSH
 
